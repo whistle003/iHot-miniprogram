@@ -1,0 +1,57 @@
+<!-- 页面容器 -->
+<scroll-view scroll-y="true" class="scrollarea" bindscrolltolower="loadMore" refresher-enabled="{{true}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onRefresh">
+  <!-- 标题栏 -->
+  <view class="flex-center header">
+    <view class="placeholder"></view>
+    <view class="header-title">
+      <text class="icon mr-2">🎵</text>
+      <text>抖音热榜</text>
+    </view>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <!-- 热榜列表卡片 -->
+    <view class="card">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">🎵</text>
+          <text>实时上升热点</text>
+        </view>
+        <text class="update-time">更新于: {{updateTime}}</text>
+      </view>
+      
+      <view class="douyin-list">
+        <view class="douyin-item" wx:for="{{douyinList}}" wx:key="id" bindtap="copyTitleAndUrl" data-title="{{item.title}}" data-url="{{item.url}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="douyin-content">
+            <view class="douyin-title-wrapper">
+              <view class="douyin-title">{{item.title}}</view>
+              <view wx:if="{{index < 3 || index % 5 === 0}}" class="douyin-tag">热</view>
+              <view wx:elif="{{index % 7 === 0}}" class="douyin-tag douyin-tag-new">新</view>
+            </view>
+            <view class="douyin-info">
+              <text class="douyin-hot">🔥 {{item.hot || '热度未知'}}</text>
+              <text wx:if="{{item.timestamp}}" class="douyin-time">{{item.timestamp}}</text>
+            </view>
+            <view wx:if="{{item.desc}}" class="douyin-desc">{{item.desc}}</view>
+            <view class="douyin-tags" wx:if="{{index % 3 === 0}}">
+              <text class="topic-tag">#抖音话题</text>
+              <text class="topic-tag">#热门视频</text>
+            </view>
+          </view>
+          <image wx:if="{{item.cover}}" class="douyin-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        </view>
+      </view>
+      
+      <!-- 底部信息 -->
+      <view class="card-footer">
+        <text class="total-count">总共{{douyinList.length}}条热榜</text>
+        <view class="refresh-btn" bindtap="refreshDouyin">
+          <text class="icon">🔄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view> 

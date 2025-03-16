@@ -1,0 +1,302 @@
+/* discovery.wxss */
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* 头部样式 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-nav {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  width: 24px;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.mr-2 {
+  margin-right: 8px;
+}
+
+/* 搜索框样式 */
+.search-container {
+  padding: 12px 16px;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.search-icon {
+  font-size: 16px;
+  color: #999;
+  margin-right: 8px;
+}
+
+.search-input {
+  flex: 1;
+  height: 20px;
+  font-size: 14px;
+}
+
+.clear-icon {
+  font-size: 14px;
+  color: #999;
+  padding: 4px;
+}
+
+/* 内容区域样式 */
+.content-area {
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.card-header {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.update-time {
+  font-size: 10px;
+  color: #999;
+}
+
+/* 平台导航样式 */
+.platform-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+}
+
+.platform-item {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.platform-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  background-color: #f0f0f0;
+}
+
+.platform-name {
+  font-size: 12px;
+  color: #333;
+}
+
+/* 平台颜色 */
+.weibo-color {
+  background-color: #ffeaea;
+  color: #ff3b30;
+}
+
+.zhihu-color {
+  background-color: #e6f0ff;
+  color: #0066ff;
+}
+
+.douyin-color {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.douban-color {
+  background-color: #e6f7e6;
+  color: #00b51d;
+}
+
+.tieba-color {
+  background-color: #e6f0ff;
+  color: #4285f4;
+}
+
+.toutiao-color {
+  background-color: #fff0e6;
+  color: #ff6b00;
+}
+
+.hupu-color {
+  background-color: #e6f0ff;
+  color: #4b7be9;
+}
+
+.history-color {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+/* 发现列表样式 */
+.discovery-list {
+  background-color: #fff;
+}
+
+.discovery-item {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.discovery-item:last-child {
+  border-bottom: none;
+}
+
+.discovery-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.discovery-content {
+  flex: 1;
+}
+
+.discovery-title {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discovery-info {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.discovery-source {
+  color: #4b7be9;
+  margin-right: 8px;
+}
+
+.discovery-hot {
+  color: #ff3b30;
+  display: flex;
+  align-items: center;
+}
+
+.discovery-arrow {
+  width: 30px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  flex-shrink: 0;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* 卡片底部 */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background-color: #f9f9f9;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.total-count {
+  color: #999;
+  font-size: 12px;
+}
+
+.refresh-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refresh-btn:active {
+  background-color: rgba(0, 0, 0, 0.1);
+} 

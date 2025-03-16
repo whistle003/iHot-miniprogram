@@ -1,0 +1,99 @@
+<!--profile.wxml-->
+<view class="container">
+  <!-- 用户信息区 -->
+  <view class="user-info-card">
+    <view class="avatar-container">
+      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+    </view>
+    <view class="user-details">
+      <view class="nickname">{{userInfo.nickName}}</view>
+      <button wx:if="{{!hasUserInfo && canIUseGetUserProfile}}" class="login-btn" bindtap="getUserProfile">登录/注册</button>
+    </view>
+  </view>
+
+  <!-- 功能卡片区 -->
+  <view class="function-card">
+    <view class="card-header">
+      <text class="card-title">功能中心</text>
+    </view>
+    <view class="function-item" bindtap="navigateToFavorites">
+      <view class="function-icon">⭐</view>
+      <view class="function-name">我的收藏</view>
+      <view class="arrow-icon">〉</view>
+    </view>
+    <view class="divider"></view>
+    
+    <view class="function-item" bindtap="navigateToHistory">
+      <view class="function-icon">⏱️</view>
+      <view class="function-name">浏览历史</view>
+      <view class="arrow-icon">〉</view>
+    </view>
+    <view class="divider"></view>
+    
+    <view class="function-item" bindtap="navigateToNotifications">
+      <view class="function-icon">🔔</view>
+      <view class="function-name">消息通知</view>
+      <view class="arrow-icon">〉</view>
+    </view>
+    <view class="divider"></view>
+    
+    <view class="function-item" bindtap="toggleTheme">
+      <view class="function-icon">{{theme === 'light' ? '☀️' : '🌙'}}</view>
+      <view class="function-name">主题设置</view>
+      <view class="theme-status">{{theme === 'light' ? '日间模式' : '夜间模式'}}</view>
+      <view class="arrow-icon">〉</view>
+    </view>
+  </view>
+
+  <!-- 应用设置区 -->
+  <view class="settings-card">
+    <view class="card-header">
+      <text class="card-title">应用设置</text>
+    </view>
+    <view class="function-item" bindtap="clearCache">
+      <view class="function-icon">🗑️</view>
+      <view class="function-name">清除缓存</view>
+      <view class="arrow-icon">〉</view>
+    </view>
+    <view class="divider"></view>
+    
+    <view class="function-item" bindtap="submitFeedback">
+      <view class="function-icon">📝</view>
+      <view class="function-name">意见反馈</view>
+      <view class="arrow-icon">〉</view>
+    </view>
+    <view class="divider"></view>
+    
+    <view class="function-item" bindtap="showAbout">
+      <view class="function-icon">ℹ️</view>
+      <view class="function-name">关于我们</view>
+      <view class="arrow-icon">〉</view>
+    </view>
+    <view class="divider"></view>
+    
+    <view class="function-item">
+      <view class="function-icon">🔄</view>
+      <view class="function-name">版本信息</view>
+      <view class="version">v{{version}}</view>
+    </view>
+  </view>
+  
+  <!-- 底部安全区 -->
+  <view class="safe-area-bottom"></view>
+</view>
+
+<!-- 底部导航栏 -->
+<view class="tabbar">
+  <view class="tab-item" bindtap="navigateTo" data-url="../index/index">
+    <view class="tab-icon">🏠</view>
+    <view class="tab-text">首页</view>
+  </view>
+  <view class="tab-item" bindtap="navigateTo" data-url="../discovery/discovery">
+    <view class="tab-icon">🔍</view>
+    <view class="tab-text">发现</view>
+  </view>
+  <view class="tab-item">
+    <view class="tab-icon tab-active">👤</view>
+    <view class="tab-text tab-active">我的</view>
+  </view>
+</view> 

@@ -1,0 +1,45 @@
+<!-- 页面容器 -->
+<scroll-view scroll-y="true" class="scrollarea" bindscrolltolower="loadMore" refresher-enabled="{{true}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onRefresh">
+  <!-- 标题栏 -->
+  <view class="flex-center header">
+    <view class="placeholder"></view>
+    <view class="header-title">今日头条</view>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <!-- 热搜列表卡片 -->
+    <view class="card">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">📰</text>
+          <text>热点新闻</text>
+        </view>
+        <text class="update-time">更新于: {{updateTime}}</text>
+      </view>
+      
+      <view class="toutiao-list">
+        <view class="toutiao-item" wx:for="{{toutiaoList}}" wx:key="id" bindtap="copyTitleAndUrl" data-title="{{item.title}}" data-url="{{item.url}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="toutiao-content">
+            <view class="toutiao-title">{{item.title}}</view>
+            <view class="toutiao-info">
+              <text class="toutiao-hot">🔥 {{item.hot || '热度未知'}}</text>
+              <text wx:if="{{item.timestamp}}" class="toutiao-time">{{item.timestamp}}</text>
+            </view>
+          </view>
+          <image wx:if="{{item.cover}}" class="toutiao-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        </view>
+      </view>
+      
+      <!-- 底部信息 -->
+      <view class="card-footer">
+        <text class="total-count">总共{{toutiaoList.length}}条热点</text>
+        <view class="refresh-btn" bindtap="refreshToutiao">
+          <text class="icon">🔄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view> 

@@ -1,0 +1,46 @@
+<!-- 页面容器 -->
+<scroll-view scroll-y="true" class="scrollarea" bindscrolltolower="loadMore" refresher-enabled="{{true}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onRefresh">
+  <!-- 标题栏 -->
+  <view class="flex-center header">
+    <view class="placeholder"></view>
+    <view class="header-title">豆瓣电影</view>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <!-- 电影列表卡片 -->
+    <view class="card">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">🎬</text>
+          <text>热门新片榜</text>
+        </view>
+        <text class="update-time">更新于: {{updateTime}}</text>
+      </view>
+      
+      <!-- 豆瓣条目列表 -->
+      <view class="douban-list">
+        <view class="douban-item" wx:for="{{doubanList}}" wx:key="id" bindtap="copyTitleAndUrl" data-title="{{item.title}}" data-url="{{item.url}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="douban-content">
+            <view class="douban-title">{{item.title}}</view>
+            <view class="douban-info">
+              <text class="douban-rating" wx:if="{{item.rating}}">{{item.rating}}分</text>
+              <text class="douban-hot">🔥 {{item.hot || ''}}</text>
+            </view>
+          </view>
+          <image wx:if="{{item.cover}}" class="douban-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        </view>
+      </view>
+      
+      <!-- 底部信息 -->
+      <view class="card-footer">
+        <text class="total-count">总共{{doubanList.length}}部电影</text>
+        <view class="refresh-btn" bindtap="refreshDouban">
+          <text class="icon">🔄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view> 

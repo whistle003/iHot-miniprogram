@@ -1,0 +1,127 @@
+<!-- discovery.wxml -->
+<scroll-view class="scrollarea" scroll-y="{{true}}" refresher-enabled="{{true}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onRefresh">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="back-nav" bindtap="navigateToIndex">
+      <text class="icon">←</text>
+    </view>
+    <view class="header-title flex-center">
+      <text class="icon mr-2">🔍</text>
+      <text>发现</text>
+    </view>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 搜索框 -->
+  <view class="search-container">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索热门内容" bindinput="onSearchInput" value="{{searchText}}" confirm-type="search" bindconfirm="onSearch" />
+      <text wx:if="{{searchText.length > 0}}" class="clear-icon" bindtap="clearSearch">✕</text>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <!-- 平台导航 -->
+    <view class="card platform-card">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">📱</text>
+          <text>热门平台</text>
+        </view>
+      </view>
+      
+      <view class="platform-grid">
+        <view class="platform-item" bindtap="navigateToPlatform" data-platform="weibo">
+          <view class="platform-icon weibo-color">
+            <text class="icon">📱</text>
+          </view>
+          <text class="platform-name">微博</text>
+        </view>
+        <view class="platform-item" bindtap="navigateToPlatform" data-platform="zhihu">
+          <view class="platform-icon zhihu-color">
+            <text class="icon">📚</text>
+          </view>
+          <text class="platform-name">知乎</text>
+        </view>
+        <view class="platform-item" bindtap="navigateToPlatform" data-platform="douyin">
+          <view class="platform-icon douyin-color">
+            <text class="icon">🎵</text>
+          </view>
+          <text class="platform-name">抖音</text>
+        </view>
+        <view class="platform-item" bindtap="navigateToPlatform" data-platform="douban">
+          <view class="platform-icon douban-color">
+            <text class="icon">🎬</text>
+          </view>
+          <text class="platform-name">豆瓣</text>
+        </view>
+        <view class="platform-item" bindtap="navigateToPlatform" data-platform="tieba">
+          <view class="platform-icon tieba-color">
+            <text class="icon">💬</text>
+          </view>
+          <text class="platform-name">贴吧</text>
+        </view>
+        <view class="platform-item" bindtap="navigateToPlatform" data-platform="toutiao">
+          <view class="platform-icon toutiao-color">
+            <text class="icon">📰</text>
+          </view>
+          <text class="platform-name">头条</text>
+        </view>
+        <view class="platform-item" bindtap="navigateToPlatform" data-platform="hupu">
+          <view class="platform-icon hupu-color">
+            <text class="icon">🏀</text>
+          </view>
+          <text class="platform-name">虎扑</text>
+        </view>
+        <view class="platform-item" bindtap="navigateToPlatform" data-platform="history">
+          <view class="platform-icon history-color">
+            <text class="icon">📜</text>
+          </view>
+          <text class="platform-name">历史</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 推荐内容 -->
+    <view class="card">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">🔥</text>
+          <text>推荐内容</text>
+        </view>
+        <view class="update-time">
+          <text>更新于 {{updateTime}}</text>
+        </view>
+      </view>
+      
+      <view class="discovery-list">
+        <view class="discovery-item" wx:for="{{discoveryList}}" wx:key="index" bindtap="copyTitleAndUrl" data-title="{{item.title}}" data-url="{{item.url}}" bindlongpress="navigateToOriginal" data-source="{{item.source}}">
+          <view class="discovery-icon">
+            <text class="icon">{{item.icon}}</text>
+          </view>
+          <view class="discovery-content">
+            <view class="discovery-title">{{item.title}}</view>
+            <view class="discovery-info">
+              <text class="discovery-source">{{item.source}}</text>
+              <text class="discovery-hot">🔥 {{item.hot}}</text>
+            </view>
+          </view>
+          <view class="discovery-arrow">
+            <text class="icon">📋🔗</text>
+          </view>
+        </view>
+      </view>
+      
+      <view class="card-footer">
+        <view class="total-count">
+          <text>共 {{discoveryList.length}} 条推荐</text>
+        </view>
+        <view class="refresh-btn" bindtap="onRefresh">
+          <text class="icon">🔄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view> 

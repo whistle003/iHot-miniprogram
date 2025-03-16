@@ -1,0 +1,52 @@
+<!-- hupu.wxml -->
+<scroll-view class="scrollarea" scroll-y="{{true}}" refresher-enabled="{{true}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onRefresh">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="placeholder"></view>
+    <view class="header-title flex-center">
+      <text class="icon mr-2">🏀</text>
+      <text>虎扑热榜</text>
+    </view>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <view class="card">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">🔥</text>
+          <text>热门话题</text>
+        </view>
+        <view class="update-time">
+          <text>更新于 {{updateTime}}</text>
+        </view>
+      </view>
+      
+      <view class="hupu-list">
+        <view class="hupu-item" wx:for="{{hupuList}}" wx:key="index" bindtap="copyTitleAndUrl" data-title="{{item.title}}" data-url="{{item.url}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">
+            <text>{{index + 1}}</text>
+          </view>
+          <view class="hupu-content">
+            <view class="hupu-title">{{item.title}}</view>
+            <view class="hupu-info">
+              <text class="hupu-board">{{item.board || '步行街'}}</text>
+              <text class="hupu-hot">🔥 {{item.replies || '0'}} 回复</text>
+            </view>
+          </view>
+          <image wx:if="{{item.cover}}" class="hupu-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        </view>
+      </view>
+      
+      <view class="card-footer">
+        <view class="total-count">
+          <text>共 {{hupuList.length}} 条热门</text>
+        </view>
+        <view class="refresh-btn" bindtap="refreshHupu">
+          <text class="icon">🔄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view> 

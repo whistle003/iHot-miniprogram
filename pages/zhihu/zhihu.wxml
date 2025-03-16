@@ -1,0 +1,49 @@
+<!-- 页面容器 -->
+<scroll-view scroll-y="true" class="scrollarea" bindscrolltolower="loadMore" refresher-enabled="{{true}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onRefresh">
+  <!-- 标题栏 -->
+  <view class="flex-center header">
+    <view class="placeholder"></view>
+    <view class="header-title">知乎热榜</view>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <!-- 热榜列表卡片 -->
+    <view class="card">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">📚</text>
+          <text>知乎热门问题</text>
+        </view>
+        <text class="update-time">更新于: {{updateTime}}</text>
+      </view>
+      
+      <view class="zhihu-list">
+        <view class="zhihu-item" wx:for="{{zhihuList}}" wx:key="id" bindtap="copyTitleAndUrl" data-title="{{item.title}}" data-url="{{item.url}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="zhihu-content">
+            <view class="zhihu-title">{{item.title}}</view>
+            <view class="zhihu-info">
+              <text class="zhihu-hot">🔥 {{item.hot || '热度未知'}}</text>
+              <text wx:if="{{item.timestamp}}" class="zhihu-time">{{item.timestamp}}</text>
+            </view>
+            <view wx:if="{{item.desc}}" class="zhihu-desc">{{item.desc}}</view>
+            <view class="zhihu-tags" wx:if="{{item.tag}}">
+              <text class="zhihu-tag">{{item.tag}}</text>
+            </view>
+          </view>
+          <image wx:if="{{item.cover}}" class="zhihu-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        </view>
+      </view>
+      
+      <!-- 底部信息 -->
+      <view class="card-footer">
+        <text class="total-count">总共{{zhihuList.length}}条热榜</text>
+        <view class="refresh-btn" bindtap="refreshZhihu">
+          <text class="icon">🔄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view> 

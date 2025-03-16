@@ -1,0 +1,302 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <!-- 状态栏 -->
+  <view class="status-bar">
+    <view class="status-bar-left">
+      <text>{{updateTime}}</text>
+    </view>
+    <view class="status-bar-right">
+      <text class="status-icon">📶</text>
+      <text class="status-icon">📡</text>
+      <text class="status-icon">🔋</text>
+    </view>
+  </view>
+
+  <!-- 小程序标题栏 -->
+  <view class="title-bar">
+    <view class="logo">
+      <view class="logo-circle">
+        <view class="logo-flame"></view>
+      </view>
+    </view>
+    <view class="title-content">
+      <view class="app-title">iHot热榜</view>
+      <view class="app-subtitle">汇聚全网热点，热门尽览无余</view>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <!-- 微博热榜卡片 -->
+    <view class="card" bindtap="navigateTo" data-url="../weibo/weibo">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">📱</text>
+          <text>微博热榜</text>
+        </view>
+        <text class="update-time">更新于: {{data.weibo.updateTime}}</text>
+      </view>
+      <view class="card-body">
+        <view class="platform-item" wx:for="{{data.weibo.list}}" wx:key="index" wx:if="{{index < 5}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="item-content">
+            <view class="item-title">{{item.title}}</view>
+            <view class="item-info">
+              <text class="hot">🔥 {{item.hot || '热度未知'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="card-footer">
+        <view class="view-more" catchtap="navigateTo" data-url="../weibo/weibo">
+          <text class="more-icon">···</text>
+          <text>查看更多</text>
+        </view>
+        <view class="refresh-btn" catchtap="refreshWeibo">
+          <text class="refresh-icon">🔄</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 知乎热榜卡片 -->
+    <view class="card" bindtap="navigateTo" data-url="../zhihu/zhihu">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">📚</text>
+          <text>知乎热榜</text>
+        </view>
+        <text class="update-time">更新于: {{data.zhihu.updateTime}}</text>
+      </view>
+      <view class="card-body">
+        <view class="platform-item" wx:for="{{data.zhihu.list}}" wx:key="index" wx:if="{{index < 5}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="item-content">
+            <view class="item-title">{{item.title}}</view>
+            <view class="item-info">
+              <text class="hot">🔥 {{item.hot || '热度未知'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="card-footer">
+        <view class="view-more" catchtap="navigateTo" data-url="../zhihu/zhihu">
+          <text class="more-icon">···</text>
+          <text>查看更多</text>
+        </view>
+        <view class="refresh-btn" catchtap="refreshZhihu">
+          <text class="refresh-icon">🔄</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 抖音热榜卡片 -->
+    <view class="card" bindtap="navigateTo" data-url="../douyin/douyin">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">🎵</text>
+          <text>抖音热榜</text>
+        </view>
+        <text class="update-time">更新于: {{data.douyin.updateTime}}</text>
+      </view>
+      <view class="card-body">
+        <view class="platform-item" wx:for="{{data.douyin.list}}" wx:key="index" wx:if="{{index < 5}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="item-content">
+            <view class="item-title">{{item.title}}</view>
+            <view class="item-info">
+              <text class="hot">🔥 {{item.hot || '热度未知'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="card-footer">
+        <view class="view-more" catchtap="navigateTo" data-url="../douyin/douyin">
+          <text class="more-icon">···</text>
+          <text>查看更多</text>
+        </view>
+        <view class="refresh-btn" catchtap="refreshDouyin">
+          <text class="refresh-icon">🔄</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 豆瓣热榜卡片 -->
+    <view class="card" bindtap="navigateTo" data-url="../douban/douban">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">🎬</text>
+          <text>豆瓣电影</text>
+        </view>
+        <text class="update-time">更新于: {{data.douban.updateTime}}</text>
+      </view>
+      <view class="card-body">
+        <view class="platform-item" wx:for="{{data.douban.list}}" wx:key="index" wx:if="{{index < 5}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="item-content">
+            <view class="item-title">{{item.title}}</view>
+            <view class="item-info">
+              <text class="hot">🔥 {{item.hot || '热度未知'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="card-footer">
+        <view class="view-more" catchtap="navigateTo" data-url="../douban/douban">
+          <text class="more-icon">···</text>
+          <text>查看更多</text>
+        </view>
+        <view class="refresh-btn" catchtap="refreshDouban">
+          <text class="refresh-icon">🔄</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 贴吧热榜卡片 -->
+    <view class="card" bindtap="navigateTo" data-url="../tieba/tieba">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">💬</text>
+          <text>百度贴吧</text>
+        </view>
+        <text class="update-time">更新于: {{data.tieba.updateTime}}</text>
+      </view>
+      <view class="card-body">
+        <view class="platform-item" wx:for="{{data.tieba.list}}" wx:key="index" wx:if="{{index < 5}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="item-content">
+            <view class="item-title">{{item.title}}</view>
+            <view class="item-info">
+              <text class="hot">🔥 {{item.hot || '0'}}讨论</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="card-footer">
+        <view class="view-more" catchtap="navigateTo" data-url="../tieba/tieba">
+          <text class="more-icon">···</text>
+          <text>查看更多</text>
+        </view>
+        <view class="refresh-btn" catchtap="refreshTieba">
+          <text class="refresh-icon">🔄</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 今日头条热榜卡片 -->
+    <view class="card" bindtap="navigateTo" data-url="../toutiao/toutiao">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">📰</text>
+          <text>今日头条</text>
+        </view>
+        <text class="update-time">更新于: {{data.toutiao.updateTime}}</text>
+      </view>
+      <view class="card-body">
+        <view class="platform-item" wx:for="{{data.toutiao.list}}" wx:key="index" wx:if="{{index < 5}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="item-content">
+            <view class="item-title">{{item.title}}</view>
+            <view class="item-info">
+              <text class="hot">🔥 {{item.hot || '热度未知'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="card-footer">
+        <view class="view-more" catchtap="navigateTo" data-url="../toutiao/toutiao">
+          <text class="more-icon">···</text>
+          <text>查看更多</text>
+        </view>
+        <view class="refresh-btn" catchtap="refreshToutiao">
+          <text class="refresh-icon">🔄</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 虎扑热榜卡片 -->
+    <view class="card" bindtap="navigateTo" data-url="../hupu/hupu">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">🏀</text>
+          <text>虎扑热榜</text>
+        </view>
+        <text class="update-time">更新于: {{data.hupu.updateTime}}</text>
+      </view>
+      <view class="card-body">
+        <view class="platform-item" wx:for="{{data.hupu.list}}" wx:key="index" wx:if="{{index < 5}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="item-content">
+            <view class="item-title">{{item.title}}</view>
+            <view class="item-info">
+              <text class="hot">🔥 {{item.hot || '0'}}回复</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="card-footer">
+        <view class="view-more" catchtap="navigateTo" data-url="../hupu/hupu">
+          <text class="more-icon">···</text>
+          <text>查看更多</text>
+        </view>
+        <view class="refresh-btn" catchtap="refreshHupu">
+          <text class="refresh-icon">🔄</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 历史上的今天 - 全新独立结构 -->
+    <view class="history-container">
+      <!-- 卡片头部 -->
+      <view class="history-header" bindtap="navigateTo" data-url="/pages/history/history">
+        <view class="history-title">
+          <text class="history-icon">📜</text>
+          <text class="history-text">历史上的今天</text>
+        </view>
+        <text class="history-update-time">更新于: {{data.history.updateTime}}</text>
+      </view>
+      
+      <!-- 卡片内容 -->
+      <view class="history-content" bindtap="navigateTo" data-url="/pages/history/history">
+        <view class="history-item" wx:for="{{data.history.list}}" wx:key="index" wx:if="{{index < 5}}">
+          <view class="history-rank {{index < 3 ? 'history-rank-' + (index + 1) : 'history-rank-normal'}}">{{index + 1}}</view>
+          <view class="history-item-content">
+            <view class="history-item-title">{{item.year}}年: {{item.title}}</view>
+            <view class="history-item-info" wx:if="{{item.year}}">
+              <text class="history-hot">{{item.year}}年前的今天</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 卡片底部 -->
+      <view class="history-footer">
+        <view class="history-view-more" bindtap="navigateTo" data-url="/pages/history/history">
+          <text class="history-more-icon">···</text>
+          <text class="history-more-text">查看更多</text>
+        </view>
+        <view class="history-refresh" bindtap="refreshHistory">
+          <text class="history-refresh-icon">🔄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 底部安全区域 -->
+  <view class="safe-area-bottom"></view>
+</scroll-view>
+<!-- 底部导航栏 -->
+<view class="tabbar">
+  <view class="tab-item">
+    <view class="tab-icon tab-active">🏠</view>
+    <view class="tab-text tab-active">首页</view>
+  </view>
+  <view class="tab-item" bindtap="navigateTo" data-url="../discovery/discovery">
+    <view class="tab-icon">🔍</view>
+    <view class="tab-text">发现</view>
+  </view>
+  <view class="tab-item">
+    <view class="tab-icon">👤</view>
+    <view class="tab-text">我的</view>
+  </view>
+</view>
+

@@ -1,0 +1,46 @@
+<!-- 页面容器 -->
+<scroll-view scroll-y="true" class="scrollarea" bindscrolltolower="loadMore" refresher-enabled="{{true}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onRefresh">
+  <!-- 标题栏 -->
+  <view class="flex-center header">
+    <view class="placeholder"></view>
+    <view class="header-title">百度贴吧</view>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <!-- 热议列表卡片 -->
+    <view class="card">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">💬</text>
+          <text>全球领先的中文社区</text>
+        </view>
+        <text class="update-time">更新于: {{updateTime}}</text>
+      </view>
+      
+      <view class="tieba-list">
+        <view class="tieba-item" wx:for="{{tiebaList}}" wx:key="id" bindtap="copyTitleAndUrl" data-title="{{item.title}}" data-url="{{item.url}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="tieba-content">
+            <view class="tieba-title">{{item.title}}</view>
+            <view class="tieba-info">
+              <text class="tieba-hot">🔥 {{item.hot || '0'}}讨论</text>
+              <text wx:if="{{item.timestamp}}" class="tieba-time">{{item.timestamp}}</text>
+            </view>
+            <view wx:if="{{item.desc}}" class="tieba-desc">{{item.desc}}</view>
+          </view>
+          <image wx:if="{{item.cover}}" class="tieba-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        </view>
+      </view>
+      
+      <!-- 底部信息 -->
+      <view class="card-footer">
+        <text class="total-count">总共{{tiebaList.length}}条热议</text>
+        <view class="refresh-btn" bindtap="refreshTieba">
+          <text class="icon">🔄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view> 

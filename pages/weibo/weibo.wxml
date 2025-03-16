@@ -1,0 +1,45 @@
+<!-- 页面容器 -->
+<scroll-view scroll-y="true" class="scrollarea" bindscrolltolower="loadMore" refresher-enabled="{{true}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onRefresh">
+  <!-- 标题栏 -->
+  <view class="flex-center header">
+    <view class="placeholder"></view>
+    <view class="header-title">微博热搜</view>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <!-- 热搜列表卡片 -->
+    <view class="card">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">🔥</text>
+          <text>实时热点，每分钟更新</text>
+        </view>
+        <text class="update-time">更新于: {{updateTime}}</text>
+      </view>
+      
+      <view class="weibo-list">
+        <view class="weibo-item" wx:for="{{weiboList}}" wx:key="id" bindtap="copyTitleAndUrl" data-title="{{item.title}}" data-url="{{item.url}}">
+          <view class="rank {{index < 3 ? 'rank-' + (index + 1) : 'rank-normal'}}">{{index + 1}}</view>
+          <view class="weibo-content">
+            <view class="weibo-title">{{item.title}}</view>
+            <view class="weibo-info">
+              <text class="weibo-hot">🔥 {{item.hot || '热度未知'}}</text>
+              <text wx:if="{{item.author}}" class="weibo-tag">{{item.author}}</text>
+            </view>
+            <view wx:if="{{item.desc}}" class="weibo-desc">{{item.desc}}</view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 底部信息 -->
+      <view class="card-footer">
+        <text class="total-count">总共{{weiboList.length}}条热搜</text>
+        <view class="refresh-btn" bindtap="refreshWeibo">
+          <text class="icon">🔄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view> 

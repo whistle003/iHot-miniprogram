@@ -1,0 +1,224 @@
+/* weibo.wxss */
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* 头部样式 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px 12px 4px;
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-nav {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+}
+
+.placeholder {
+  width: 24px;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.mr-2 {
+  margin-right: 8px;
+}
+
+/* 内容区域样式 */
+.content-area {
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
+}
+
+.card-header {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.update-time {
+  font-size: 10px;
+  color: #999;
+}
+
+/* 微博列表样式 */
+.weibo-list {
+  background-color: #fff;
+}
+
+.weibo-item {
+  display: flex;
+  padding: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.weibo-item:last-child {
+  border-bottom: none;
+}
+
+.weibo-item:active {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.rank {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.rank-1 {
+  background-color: #ff3b30;
+  color: #fff;
+}
+
+.rank-2 {
+  background-color: #ff9500;
+  color: #fff;
+}
+
+.rank-3 {
+  background-color: #ffcc00;
+  color: #fff;
+}
+
+.rank-normal {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.weibo-content {
+  flex: 1;
+}
+
+.weibo-title {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+  position: relative;
+  padding-right: 24px;
+}
+
+.weibo-title::after {
+  content: "📋🔗";
+  position: absolute;
+  right: 0;
+  top: 2px;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.weibo-info {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.weibo-hot {
+  color: #ff6600;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.weibo-tag {
+  color: #fff;
+  background-color: #ff8200;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 10px;
+}
+
+.weibo-desc {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* 卡片底部 */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background-color: #f9f9f9;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.total-count {
+  color: #999;
+  font-size: 12px;
+}
+
+.refresh-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refresh-btn:active {
+  background-color: rgba(0, 0, 0, 0.1);
+} 

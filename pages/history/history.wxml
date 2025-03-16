@@ -1,0 +1,53 @@
+<!-- history.wxml - 历史上的今天 -->
+<scroll-view class="scrollarea" scroll-y="{{true}}" refresher-enabled="{{true}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onRefresh">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="placeholder"></view>
+    <view class="header-title flex-center">
+      <text class="icon mr-2">📜</text>
+      <text>历史上的今天</text>
+    </view>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <view class="card">
+      <view class="card-header">
+        <view class="title">
+          <text class="icon mr-2">📅</text>
+          <text>{{month}}月{{day}}日 历史事件</text>
+        </view>
+        <view class="update-time">
+          <text>更新于 {{updateTime}}</text>
+        </view>
+      </view>
+      
+      <view wx:if="{{historyList.length === 0}}" class="empty-state">
+        <view class="empty-icon">📭</view>
+        <view class="empty-text">暂无历史数据</view>
+        <view class="empty-subtext">无法获取历史上的今天数据</view>
+      </view>
+      
+      <view wx:else class="history-list">
+        <view class="history-item" wx:for="{{historyList}}" wx:key="index" bindtap="copyTitleAndUrl" data-title="{{item.title}}" data-url="{{item.url}}">
+          <view class="history-icon">
+            <text class="history-year">{{item.year}}</text>
+          </view>
+          <view class="history-content">
+            <view class="history-title">{{item.title}}</view>
+            <view class="history-info" wx:if="{{item.desc}}">
+              <text class="history-desc">{{item.desc}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <view class="card-footer">
+        <view class="total-count">
+          <text>共 {{historyList.length}} 条历史事件</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view> 
